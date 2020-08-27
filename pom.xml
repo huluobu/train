@@ -10,6 +10,7 @@
     <version>1.0-SNAPSHOT</version>
     <modules>
         <module>firstweek-01</module>
+        <module>firstweek-02</module>
     </modules>
     <dependencyManagement>
         <dependencies>

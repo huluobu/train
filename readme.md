@@ -20,4 +20,23 @@
 	
 #maven 使用
 ##解决依赖包冲突
-1. 对版本不兼容的包<exco>
+1. 对版本不兼容的包<exclusion></exclusion>在pom文件中
+
+##resource文件配置
+1. new----resourcebundle下创建Properties文件
+	Properties properties = new Properties();
+	properties.getProperty(key);
+	进行获取
+
+
+2. 多模块
+	projectstruct 中模块添加依赖关系；
+	在需要依赖的pom文件中导入被依赖的模块
+```	
+        <dependency>
+            <groupId>org.carrot</groupId>
+            <artifactId>firstweek-01</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+```
+firstweek02 调用firstweek01的config的读取properties配置
