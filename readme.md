@@ -40,3 +40,10 @@
         </dependency>
 ```
 firstweek02 调用firstweek01的config的读取properties配置
+
+3. web项目
+   	在配置tomcat时，deploy选项要调至web模块的webapp文件夹下才能运行成功
+
+#tomcat 使用
+## tomcat 认识
+1. servlet server java表达式和websocket的开源实现
