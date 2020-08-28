@@ -47,3 +47,21 @@ firstweek02 调用firstweek01的config的读取properties配置
 #tomcat 使用
 ## tomcat 认识
 1. servlet server java表达式和websocket的开源实现
+2. 目录结构，webapp 存放我们的可能的应用文件
+3. model模块构建web项目时,想在prostruct中把模块引入，在将模块进行war包配置
+4. 配置虚拟目录conf中的servre.xml中添加Context,设置完成后要重启Tomcat
+	          ``` xml
+	          <Context path="/f04" docBase="D:\springen\training\firstweek04"></Context>
+	          ```
+5. 可以在\conf\Catalina\localhost，新建xml文件,指向虚拟目录,无需重启
+	```
+	<?xml version='1.0' encoding='utf-8'?>
+	<Context docBase="D:\springen\training\firstweek04"/>
+	```
+
+6. 小参数调整
+	root.xml改root链接路径，server.xml修改端口，更改首页web.xml 中修改
+	修改hosts文件
+
+#mysql
+

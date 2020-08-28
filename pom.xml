@@ -13,6 +13,7 @@
         <module>firstweek-02</module>
         <module>firstweek-03-webapp</module>
         <module>firstweek-03-webapp</module>
+        <module>firstweek-04-webapp2</module>
     </modules>
     <dependencyManagement>
         <dependencies>
