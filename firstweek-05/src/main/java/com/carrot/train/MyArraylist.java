@@ -45,10 +45,10 @@ public class MyArraylist {
 
     }
 
-    public void moveFromMyArraylist(Integer index) {
+    public void moveFromMyArraylist(Integer index) throws Exception {
         //²ÎÊýÅÐ¶Ï
-        if (index<0 || index>this.length) {
-            System.out.println("your index is wrong");
+        if (index<0 || index>this.currentindex) {
+            throw new Exception("your index is wrong");
         }
         //É¾³ýÔªËØ
         for (int i=index;i<length-1;i++) {

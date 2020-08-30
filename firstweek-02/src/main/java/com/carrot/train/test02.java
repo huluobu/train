@@ -15,7 +15,7 @@ import java.sql.SQLOutput;
  * @Date 2020/8/29 13:58
  **/
 public class test02 {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
 
         //测试单例模式
         ActuatorSingetonHungry act1 = ActuatorSingetonHungry.getActuatorSingleton();
@@ -47,18 +47,24 @@ public class test02 {
         myArraylist.toString2();
         myArraylist.moveFromMyArraylist(10);
         myArraylist.toString2();
+        //添加一个非int对象
         myArraylist.addToMyArraylist(new test01());
         myArraylist.toString2();
+        //添加至11个对象
         myArraylist.addToMyArraylist(1);
         myArraylist.toString2();
+        //删除至10个对象
         myArraylist.moveFromMyArraylist(10);
         myArraylist.toString2();
         myArraylist.moveFromMyArraylist(4);
         myArraylist.toString2();
         myArraylist.moveFromMyArraylist(4);
         myArraylist.toString2();
+        //删除至7个对象
         myArraylist.moveFromMyArraylist(4);
         myArraylist.toString2();
+        //输入非法参数判断
+        myArraylist.moveFromMyArraylist(-1);
 
 
     }
