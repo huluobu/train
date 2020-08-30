@@ -1,4 +1,27 @@
 #培训笔记
+## spring 书籍的知识总结
+### 单例模式
+	1.恶汉模式 
+	```java
+	public class SingleObject {
+ 
+   //创建 SingleObject 的一个对象
+   private static SingleObject instance = new SingleObject();//创建时就自动加载实例对象
+ 
+   //让构造函数为 private，这样该类就不会被实例化
+   private SingleObject(){}
+ 
+   //获取唯一可用的对象
+   public static SingleObject getInstance(){
+      return instance;
+   }
+ 
+   public void showMessage(){
+      System.out.println("Hello World!");
+   }
+}
+	```
+
 ##idea安装
 ###idea常用的目录
 1. vmoption 虚拟机的配置文件
@@ -59,9 +82,25 @@ firstweek02 调用firstweek01的config的读取properties配置
 	<Context docBase="D:\springen\training\firstweek04"/>
 	```
 
-6. 小参数调整
+6. 参数调整
 	root.xml改root链接路径，server.xml修改端口，更改首页web.xml 中修改
 	修改hosts文件
 
 #mysql
+## 基本知识
+1. 存储过程 data--table--database;
+2. DBMS:
+    文件共享的access
+    CS 架构的client --server
+
+## mysql 常见命令
+	use /show  database;
+	show /desc tables;
+
+	规范--投产步骤注意使用use table/database来区别sql执行语句
+
+## sql的查询
+   1. select '字段' 用以区分；
+   2. 字符串拼接CONCAT(id,',',IFNULL(serial,0))；
+
 
