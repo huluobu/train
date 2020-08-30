@@ -32,7 +32,6 @@ public class test02 {
 
         //测试自定义list
         MyArraylist myArraylist=new MyArraylist();
-        myArraylist.toString2();
         myArraylist.addToMyArraylist(1);
         myArraylist.addToMyArraylist(1);
         myArraylist.addToMyArraylist(1);
@@ -44,23 +43,33 @@ public class test02 {
         myArraylist.toString2();
         myArraylist.addToMyArraylist(1);
         myArraylist.addToMyArraylist(1);
-        myArraylist.toString2();
-        myArraylist.moveFromMyArraylist(10);
-        myArraylist.toString2();
+
         //添加一个非int对象
         myArraylist.addToMyArraylist(new test01());
         myArraylist.toString2();
-        //添加至11个对象
+        //添加至16个对象
+        myArraylist.addToMyArraylist(1);
+        myArraylist.addToMyArraylist(1);
+        myArraylist.addToMyArraylist(1);
+        myArraylist.addToMyArraylist(1);
         myArraylist.addToMyArraylist(1);
         myArraylist.toString2();
-        //删除至10个对象
+
+
+        //删除至15个对象
         myArraylist.moveFromMyArraylist(10);
         myArraylist.toString2();
         myArraylist.moveFromMyArraylist(4);
-        myArraylist.toString2();
+        myArraylist.moveFromMyArraylist(4);
+        myArraylist.moveFromMyArraylist(4);
+        myArraylist.moveFromMyArraylist(4);
+        myArraylist.moveFromMyArraylist(4);
         myArraylist.moveFromMyArraylist(4);
         myArraylist.toString2();
-        //删除至7个对象
+        //删除至5个对象
+        myArraylist.moveFromMyArraylist(4);
+        myArraylist.moveFromMyArraylist(4);
+        myArraylist.moveFromMyArraylist(4);
         myArraylist.moveFromMyArraylist(4);
         myArraylist.toString2();
         //输入非法参数判断
