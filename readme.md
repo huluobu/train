@@ -3,24 +3,43 @@
 ### 单例模式
 	1.恶汉模式 
 	```java
-	public class SingleObject {
- 
-   //创建 SingleObject 的一个对象
-   private static SingleObject instance = new SingleObject();//创建时就自动加载实例对象
- 
-   //让构造函数为 private，这样该类就不会被实例化
-   private SingleObject(){}
- 
-   //获取唯一可用的对象
-   public static SingleObject getInstance(){
-      return instance;
-   }
- 
-   public void showMessage(){
-      System.out.println("Hello World!");
-   }
-}
+		public class SingleObject {
+	 
+	   //创建 SingleObject 的一个对象
+	   private static SingleObject instance = new SingleObject();//创建时就自动加载实例对象
+	 
+	   //让构造函数为 private，这样该类就不会被实例化
+	   private SingleObject(){}
+	 
+	   //获取唯一可用的对象
+	   public static SingleObject getInstance(){
+	      return instance;
+	   }
+	 
+	   public void showMessage(){
+	      System.out.println("Hello World!");
+	   }
+	}
 	```
+	2. 懒加载方式
+	```java
+		//双重锁模式（线程安全和指令重排）
+		public class Singleton {  
+	    private volatile static Singleton singleton;  //禁止指令的重排优化
+	    private Singleton (){}  
+	    public static Singleton getSingleton() {  
+	    if (singleton == null) {  
+	        synchronized (Singleton.class) { //原子锁 
+	        if (singleton == null) {  
+	            singleton = new Singleton();  
+	        }  
+	        }  
+	    }  
+	    return singleton;  
+	    }  
+		}
+	```
+	3. 代理模式
 
 ##idea安装
 ###idea常用的目录
@@ -102,5 +121,28 @@ firstweek02 调用firstweek01的config的读取properties配置
 ## sql的查询
    1. select '字段' 用以区分；
    2. 字符串拼接CONCAT(id,',',IFNULL(serial,0))；
+   3. 模糊查询 like 包含han字符的 like '%han%'
+   		between and 包含临界值，且无法调换顺序
+   		in 判断字段是否在列表中，列表字段类型必须一致，，无法支持通配符。
+   		<=>安全等于
+
+
+## 数据操作语言
+
+1. 插入 insert into table (col) values(cl1...)类型一致或兼容,支持插入多条记录
+		insert into table set col=val, col=val;
+2. 更新 update table set col=val,,,, where condition;
+
+3. 删除 delete from table where condition;有返回值，可以回滚。
+		truncate table ;整个表数据全删，无返回值，
+		多表删除，加上连接删除；
+		自增长列：delete后，自增长列从断点开始；truncate,从1开始；
+
+4. 连接 sql92 where 连接条件
+		sql99 inner|left|right join table2 on 连接条件
+
+
+
+
 
 

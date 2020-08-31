@@ -15,6 +15,7 @@
         <module>firstweek-03-webapp</module>
         <module>firstweek-04-webapp2</module>
         <module>firstweek-05</module>
+        <module>secondweek-01-sql</module>
     </modules>
     <dependencyManagement>
         <dependencies>
