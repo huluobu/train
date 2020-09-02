@@ -141,7 +141,32 @@ firstweek02 调用firstweek01的config的读取properties配置
 4. 连接 sql92 where 连接条件
 		sql99 inner|left|right join table2 on 连接条件
 
+6. 常用函数 max min avg count sum datediff(日期之差) lengh
 
+5. 分组查询的字段限制，
+	可以表达式分组：
+	```sql
+		SELECT LENGTH(e.ename) as len,COUNT(*)
+		FROM emp e
+		GROUP BY LENGTH(e.ename);
+	```
+	多字段分组
+		```sql
+		SELECT e.deptno,e.job,AVG(e.sal)
+		FROM emp e
+		GROUP BY e.deptno,e.job;
+		```
+
+7. 连接查询：
+	等值连接：可以三张表连接
+	自连接：对于一张表可以查找多次，且相互关联
+	内连接： inner 可以省略 与等值连接的效果相同
+			非等值连接
+
+	外连接：主表有，从表没有的记录集合，a+ab或b+ab
+			left/right + 主表
+
+	全外连接：相当于集合的并 a+b-ab
 
 
 
