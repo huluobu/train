@@ -16,7 +16,12 @@
         <module>firstweek-04-webapp2</module>
         <module>firstweek-05</module>
         <module>secondweek-01-sql</module>
+        <module>thirdweek-01-collection</module>
     </modules>
+    <properties>
+        <lombok.version>1.16.18</lombok.version>
+    </properties>
+
     <dependencyManagement>
         <dependencies>
 
@@ -33,6 +38,12 @@
                 <version>2.2.2.RELEASE</version>
             </dependency>
 
+            <dependency>
+                <groupId>org.projectlombok</groupId>
+                <artifactId>lombok</artifactId>
+                <version>${lombok.version}</version>
+                <optional>true</optional>
+            </dependency>
 
 
         </dependencies>

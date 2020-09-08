@@ -125,19 +125,6 @@ firstweek02 调用firstweek01的config的读取properties配置
    		between and 包含临界值，且无法调换顺序
    		in 判断字段是否在列表中，列表字段类型必须一致，，无法支持通配符。
    		<=>安全等于
-
-
-## 数据操作语言
-
-1. 插入 insert into table (col) values(cl1...)类型一致或兼容,支持插入多条记录
-		insert into table set col=val, col=val;
-2. 更新 update table set col=val,,,, where condition;
-
-3. 删除 delete from table where condition;有返回值，可以回滚。
-		truncate table ;整个表数据全删，无返回值，
-		多表删除，加上连接删除；
-		自增长列：delete后，自增长列从断点开始；truncate,从1开始；
-
 4. 连接 sql92 where 连接条件
 		sql99 inner|left|right join table2 on 连接条件
 
@@ -167,6 +154,75 @@ firstweek02 调用firstweek01的config的读取properties配置
 			left/right + 主表
 
 	全外连接：相当于集合的并 a+b-ab
+
+8. 限定条件是最高，最低，可以order by col desc/asc limit  1;
+
+9. union 查询是去重合并
+
+10. alter table 
+
+## 数据操作语言
+
+1. 插入 insert into table (col) values(cl1...)类型一致或兼容,支持插入多条记录
+		insert into table set col=val, col=val;
+2. 更新 update table set col=val,,,, where condition;
+
+3. 删除 delete from table where condition;有返回值，可以回滚。
+		truncate table ;整个表数据全删，无返回值，
+		多表删除，加上连接删除；
+		自增长列：delete后，自增长列从断点开始；truncate,从1开始；
+
+
+
+##数据库事务
+1. 特性ACID
+2. 隐式事务：delete set  create
+3. commit |rollback
+4. 事务流程
+	```````
+	set autocommit=0 
+	start transaction
+	commit;
+	```````
+
+5. 事物的隔离级别(set transaction isolation level + ...)
+	read uncommitted
+	read commited
+	repeated read
+
+6. savepoint 使用
+	在事务内部使用
+	savepoint a;
+	rollback to a;
+7. 视图--->临时表
+		1). create view 视图名
+			as
+			查询语句;
+		2). create or replace view  视图名
+			as
+			查询语句;
+
+
+
+
+##java学习
+###collection
+1. 有list 和set
+	list 有序，可重复，有下标（arraylist, linkedlist,vector）
+	set  无序，无可重复
+	collection api
+	遍历：	1） for(object o:)
+			2) iterator it=collection.iterator();迭代器使用中不能做做删除操作
+			it.hasnext
+
+2.	list add,remove,clear,
+	遍历： for 下标
+		  iterator 迭代器
+		  list iterator 方向任意（hasprevious,set替换）
+
+
+
+
 
 
 
