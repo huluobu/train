@@ -10,14 +10,14 @@ import lombok.Getter;
 @Getter
 @AllArgsConstructor
 public class HealthCheckItem {
-//    ¼ì²éÏîÃû
+
     private String itemName;
-//    ¼ì²éÏîÃèÊö
+//    ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
     private String itemDesc;
-//    ¼ì²éÏî¼Û¸ñ
+//    ï¿½ï¿½ï¿½ï¿½ï¿½Û¸ï¿½
     private float itemPrice;
 
-//    ÏÔÊ¾¼ì²éÏîĞÅÏ¢
+//    ï¿½ï¿½Ê¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢
     public void showItem() {
         System.out.println(this.toString());
     }

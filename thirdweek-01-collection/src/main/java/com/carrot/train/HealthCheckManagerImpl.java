@@ -1,11 +1,14 @@
 package com.carrot.train;
 
+import lombok.Data;
+
 import java.util.*;
 
 /**
  * @Author: carrot
  * @Date: 2020/9/8 20:24
  */
+@Data
 public class HealthCheckManagerImpl implements HealthCheckManager {
     //所有检查项检查项列表：
     private List<HealthCheckItem> itemList;
@@ -14,6 +17,8 @@ public class HealthCheckManagerImpl implements HealthCheckManager {
 
     @Override
     public void initial() {
+        itemList=new ArrayList<HealthCheckItem>();
+        map=new HashMap<String,HealthCheckPackage>();
         HealthCheckItem hcit1 = new HealthCheckItem("血常规", "检验血液",20);
         HealthCheckItem hcit2 = new HealthCheckItem("尿常规", "检验尿液", 20);
         HealthCheckItem hcit3 = new HealthCheckItem("肛肠科", "检验肛肠", 50);
@@ -64,6 +69,7 @@ public class HealthCheckManagerImpl implements HealthCheckManager {
         }
         if (map.size()>0) {
             for (String hcp:map.keySet()) {
+                System.out.println("套餐："+map.get(hcp).getPackName()+"\n");
             }
         }
     }
