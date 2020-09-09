@@ -98,6 +98,7 @@ public class HealthCheckManagerImpl implements HealthCheckManager {
                 HealthCheckPackage checkPackage = map.get(packName);
                 if (checkPackage.getItems().contains(item)) {
                     System.out.println("添加的检查项已经在套餐中,添加失败");
+                    return flag;
                 } else {
                     checkPackage.getItems().add(item);
                 }
@@ -137,12 +138,11 @@ public class HealthCheckManagerImpl implements HealthCheckManager {
                     flag = true;
                 } else {
                     System.out.println("套餐中无该检查项，删除检查项失败");
+                    return flag;
                 }
-
-
-            } else {
-                System.out.println("库中不包含该套餐");
             }
+        } else {
+            System.out.println("添加的套餐名不存在,添加失败");
         }
 
 
