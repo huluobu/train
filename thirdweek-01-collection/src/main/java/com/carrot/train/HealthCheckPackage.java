@@ -12,13 +12,13 @@ import java.util.Set;
 @AllArgsConstructor
 @NoArgsConstructor
 public class HealthCheckPackage {
-    //Ì×²ÍÃû
+    //ï¿½×²ï¿½ï¿½ï¿½
     private String packName;
-//    ÕÛ¿ÛÃû
+//    ï¿½Û¿ï¿½ï¿½ï¿½
     private Double discount = 1.0;
-//    Ì×²Í¼Û¸ñ
-    private Double totalPrice;
-//    Ì×²ÍµÄ¼ì²éÏî
+//    ï¿½×²Í¼Û¸ï¿½
+    private Double totalPrice=0.0;
+//    ï¿½×²ÍµÄ¼ï¿½ï¿½ï¿½ï¿½
     private Set<HealthCheckItem> items = new HashSet<HealthCheckItem>();
 
     public HealthCheckPackage(String packName,Double discount,HashSet<HealthCheckItem> items) {
@@ -31,11 +31,11 @@ public class HealthCheckPackage {
     }
 
     public void calcTotalPrice() {
-//        ÎŞ¼ì²éÏîÅĞ¶Ï
+        totalPrice=0.0;
         if (items==null||items.isEmpty()) {
             totalPrice=0.0;
         }
-//        ÓĞ¼ì²éÏîÅĞ¶Ï
+//        ï¿½Ğ¼ï¿½ï¿½ï¿½ï¿½ï¿½Ğ¶ï¿½
         if (items.size()>0) {
             Iterator<HealthCheckItem> it = items.iterator();
             while (it.hasNext()) {
@@ -47,7 +47,7 @@ public class HealthCheckPackage {
 
     public void showPackge() {
         this.calcTotalPrice();
-        System.out.println("Ì×²ÍÃû£º"+packName+"/n"+"ÕÛ¿Û£º"+discount+"/n"+"×Ü¼Û¸ñ£º"+totalPrice+"/n");
+        System.out.println("å¥—é¤åä¸ºï¼š"+packName+"\n"+"æŠ˜æ‰£ä¸º"+discount+"\n"+"æ€»ä»·æ ¼"+totalPrice+"\n");
     }
 
     public void showDetail() {

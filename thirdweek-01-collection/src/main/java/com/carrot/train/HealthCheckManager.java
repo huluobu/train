@@ -24,7 +24,7 @@ public interface HealthCheckManager {
     boolean delItem(String packName,String itemName);
 
 //    修改套某餐的折扣：根据套餐名找到套餐，更新该套餐的折扣，更新总价
-    void updatePrice(String packName,double discount);
+    boolean updatePrice(String packName,double discount);
 
 //    新增套餐：若所有套餐列表map中已经包括该套餐名，返回false表示套餐名不允许重复，否则添加一个空的新套餐
     boolean addPackage(String newpackName);

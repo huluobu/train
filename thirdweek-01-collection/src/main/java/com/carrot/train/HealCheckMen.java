@@ -9,18 +9,17 @@ public class HealCheckMen {
     private Scanner input;
 
     public void showmenu1() throws IOException {
-        healthCheckManager.initial();
-        System.out.println("------Ìå¼ìÌ×²Í¹ÜÀíÏµÍ³--------");
+        System.out.println("------ä½“æ£€å¥—é¤ç®¡ç†ç³»ç»Ÿ--------");
         System.out.println("---------------------------------");
-        System.out.println("      1¡¢ÏÔÊ¾ËùÓĞÌ×²Í");
-        System.out.println("      2¡¢ÏÔÊ¾Ì×²ÍÏêÇé");
-        System.out.println("      3¡¢Ôö¼ÓÄ³Ì×²Í¼ì²éÏî");
-        System.out.println("      4¡¢É¾³ıÄ³Ì×²Í¼ì²éÏî");
-        System.out.println("      5¡¢ĞŞ¸ÄÄ³Ì×²ÍÕÛ¿Û");
-        System.out.println("      6¡¢Ôö¼ÓĞÂÌ×²Í");
-        System.out.println("      7¡¢ÍË³öÏµÍ³");
+        System.out.println("      1ã€æ˜¾ç¤ºæ‰€æœ‰å¥—é¤");
+        System.out.println("      2ã€æ˜¾ç¤ºå¥—é¤è¯¦æƒ…");
+        System.out.println("      3ã€å¢åŠ æŸå¥—é¤æ£€æŸ¥é¡¹");
+        System.out.println("      4ã€åˆ é™¤æŸå¥—é¤æ£€æŸ¥é¡¹");
+        System.out.println("      5ã€ä¿®æ”¹æŸå¥—é¤æŠ˜æ‰£");
+        System.out.println("      6ã€å¢åŠ æ–°å¥—é¤");
+        System.out.println("      7ã€é€€å‡ºç³»ç»Ÿ");
         System.out.println("---------------------------------");
-        System.out.println("ÇëÑ¡ÔñÄúµÄ·şÎñÏîÄ¿(7):");
+        System.out.println("è¯·é€‰æ‹©æ‚¨çš„æœåŠ¡é¡¹ç›®(0-7):");
         input = new Scanner(System.in);
         int search=input.nextInt();
         switch (search) {
@@ -29,57 +28,113 @@ public class HealCheckMen {
             case 3:showMenu4();break;
             case 4:showMenu5();break;
             case 5:showMenu6();break;
+            case 6:showMenu8();break;
             case 7:
-                System.out.println("-----»¶Ó­ÏÂ´ÎÊ¹ÓÃ------");
+                System.out.println("-----æ¬¢è¿ä¸‹æ¬¡ä½¿ç”¨------");
                 System.exit(0);
             default:
-                System.out.println("ÇëÊäÈë0-4Ö®¼äµÄÊı×Ö£¡");
+                System.out.println("è¯·è¾“å…¥0-4ä¹‹é—´çš„æ•°å­—ï¼");
         }
     }
     public void showMenu2() throws IOException {
-        System.out.println("------ËùÓĞÌ×²ÍÓĞ£º--------");
+        System.out.println("------æ‰€æœ‰å¥—é¤æœ‰ï¼š--------");
         healthCheckManager.showAllPackages();
         System.out.println("---------------------------------");
-        System.out.println("      1¡¢·µ»ØÖ÷²Ëµ¥");
-        System.out.println("      2¡¢ÍË³ö");
+        System.out.println("      1ã€è¿”å›ä¸»èœå•");
+        System.out.println("      2ã€é€€å‡º");
         input = new Scanner(System.in);
         int search=input.nextInt();
         switch (search) {
             case 1:showmenu1();break;
             case 2:
-                System.out.println("-----»¶Ó­ÏÂ´ÎÊ¹ÓÃ£¡------");
+                System.out.println("-----æ¬¢è¿ä¸‹æ¬¡ä½¿ç”¨ï¼------");
                 System.exit(0);
             default:
-                System.out.println("ÇëÊäÈë0-4Ö®¼äµÄÊı×Ö£¡");
+                System.out.println("è¯·è¾“å…¥1-2ä¹‹é—´çš„æ•°å­—ï¼");
         }
     }
     public void showMenu3() throws IOException {
-        System.out.println("------ÊäÈëµÄÌ×²ÍÃû³Æ£º--------");
+        System.out.println("---------------------------------");
+        System.out.println("------è¾“å…¥çš„æŸ¥çœ‹è¯¦ç»†å¥—é¤åç§°ï¼š--------");
         System.out.println("---------------------------------");
 
         input = new Scanner(System.in);
         String search=input.nextLine();
-        healthCheckManager.getMap().get(search).showPackge();
+        healthCheckManager.getMap().get(search).showDetail();
         showMenu7();
 
     }
-    public void showMenu4() throws IOException {}
-    public void showMenu5() throws IOException {}
-    public void showMenu6() throws IOException {}
+    public void showMenu4() throws IOException {
+        System.out.println("---------------------------------");
+        System.out.println("------è¾“å…¥çš„æ·»åŠ å¥—é¤åç§°ï¼š--------");
+        System.out.println("---------------------------------");
+        input = new Scanner(System.in);
+        String search1=input.nextLine();
+        System.out.println("---------------------------------");
+        System.out.println("------è¾“å…¥çš„æ·»åŠ æ£€æŸ¥é¡¹åç§°ï¼š--------");
+        System.out.println("---------------------------------");
+        input = new Scanner(System.in);
+        String search2=input.nextLine();
+        healthCheckManager.addItem(search1,search2);
+        showMenu7();
+
+    }
+    public void showMenu5() throws IOException {
+        System.out.println("---------------------------------");
+        System.out.println("------è¾“å…¥çš„åˆ é™¤å¥—é¤åç§°ï¼š--------");
+        System.out.println("---------------------------------");
+        input = new Scanner(System.in);
+        String search1=input.nextLine();
+        System.out.println("---------------------------------");
+        System.out.println("------è¾“å…¥çš„åˆ é™¤æ£€æŸ¥é¡¹åç§°ï¼š--------");
+        System.out.println("---------------------------------");
+        input = new Scanner(System.in);
+        String search2=input.nextLine();
+        healthCheckManager.delItem(search1,search2);
+        showMenu7();
+
+    }
+    public void showMenu6() throws IOException {
+        System.out.println("---------------------------------");
+        System.out.println("------è¾“å…¥çš„ä¿®æ”¹æŠ˜æ‰£çš„å¥—é¤åç§°ï¼š--------");
+        System.out.println("---------------------------------");
+        input = new Scanner(System.in);
+        String search1=input.nextLine();
+        System.out.println("---------------------------------");
+        System.out.println("------è¾“å…¥çš„ä¿®æ”¹æŠ˜æ‰£æ•°ï¼š--------");
+        System.out.println("------æŠ˜æ‰£æ•°ï¼šåœ¨ï¼ˆ0,1ï¼‰ä¹‹é—´--------");
+        System.out.println("---------------------------------");
+
+        input = new Scanner(System.in);
+        double search2=input.nextDouble();
+        healthCheckManager.updatePrice(search1,search2);
+        showMenu7();
+
+    }
     public void showMenu7() throws IOException {
-        System.out.println("      1¡¢·µ»ØÖ÷²Ëµ¥");
-        System.out.println("      2¡¢ÍË³ö");
+        System.out.println("---------------------------------");
+        System.out.println("      1ã€è¿”å›ä¸»èœå•");
+        System.out.println("      2ã€é€€å‡º");
         input = new Scanner(System.in);
         int search=input.nextInt();
         switch (search) {
             case 1:showmenu1();break;
             case 2:
-                System.out.println("-----»¶Ó­ÏÂ´ÎÊ¹ÓÃ£¡------");
+                System.out.println("-----æ¬¢è¿ä¸‹æ¬¡ä½¿ç”¨ï¼------");
                 System.exit(0);
             default:
-                System.out.println("ÇëÊäÈë0-4Ö®¼äµÄÊı×Ö£¡");
+                System.out.println("è¯·è¾“å…¥1-2ä¹‹é—´çš„æ•°å­—ï¼");
         }
 
+    }
+    public void showMenu8() throws IOException {
+        System.out.println("---------------------------------");
+        System.out.println("------è¾“å…¥çš„æ·»åŠ çš„å¥—é¤åç§°ï¼š--------");
+        System.out.println("---------------------------------");
+        input = new Scanner(System.in);
+        String search1=input.nextLine();
+        healthCheckManager.addPackage(search1);
+        showMenu7();
     }
 
 

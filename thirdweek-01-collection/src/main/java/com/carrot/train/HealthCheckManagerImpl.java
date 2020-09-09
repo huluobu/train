@@ -89,6 +89,7 @@ public class HealthCheckManagerImpl implements HealthCheckManager {
         boolean flag=false;
         if (containlistitem(itemName)==false) {
             System.out.println("添加的检查项不在库中");
+            return flag;
         }
         if (map.containsKey(packName)) {
             int index = getindexitemlist(itemName);
@@ -108,6 +109,8 @@ public class HealthCheckManagerImpl implements HealthCheckManager {
             } else {
                 System.out.println("库中不包含该套餐");
             }
+        } else {
+            System.out.println("添加的套餐名不存在,添加失败");
         }
         return flag;
     }
@@ -115,31 +118,80 @@ public class HealthCheckManagerImpl implements HealthCheckManager {
     @Override
     public boolean delItem(String packName, String itemName) {
         boolean flag=false;
-        if (containlistitem(itemName)==false) {
+        if (containlistitem(itemName) == false) {
             System.out.println("删除的检查项不在库中");
+            return flag;
         }
+        if (map.containsKey(packName)) {
+            int index = getindexitemlist(itemName);
+            if (index > 0) {
+                HealthCheckItem item = itemList.get(index);
+                HealthCheckPackage checkPackage = map.get(packName);
+                if (checkPackage.getItems().contains(item)) {
+//                    System.out.println("添加的检查项已经在套餐中,添加失败");
+                    checkPackage.getItems().remove(item);
+                    checkPackage.setDiscount(1.0);
+                    map.put(checkPackage.getPackName(), checkPackage);
+                    System.out.println("删除检查项成功");
+                    map.get(packName).showDetail();
+                    flag = true;
+                } else {
+                    System.out.println("套餐中无该检查项，删除检查项失败");
+                }
+
+
+            } else {
+                System.out.println("库中不包含该套餐");
+            }
+        }
+
 
         return flag;
     }
 
 
     @Override
-    public void updatePrice(String packName, double discount) {
+    public boolean updatePrice(String packName, double discount) {
+        boolean flag=false;
+        if(discount<0||discount>1){
+            System.out.println("请输的折扣数非法");
+            return flag;
+        }
         if (map.containsKey(packName)) {
             HealthCheckPackage checkPackage = map.get(packName);
             checkPackage.setDiscount(discount);
             map.put(checkPackage.getPackName(), checkPackage);
             System.out.println("修改折扣成功");
             map.get(packName).showDetail();
+            flag=true;
+            return flag;
             } else {
                 System.out.println("库中不包含该套餐,修改折扣失败");
+            return flag;
             }
     }
 
 
     @Override
     public boolean addPackage(String newpackName) {
-        return false;
+        boolean flag=true;
+        for (String key : map.keySet()) {
+            if (key.equals(newpackName)) {
+                System.out.println("输入的套餐名存在");
+                flag = false;
+                break;
+            }
+        }
+        if (flag) {
+            HealthCheckPackage checkPackage = new HealthCheckPackage();
+            checkPackage.setPackName(newpackName);
+            map.put(newpackName, checkPackage);
+            System.out.println("添加套成功");
+            return flag;
+        } else {
+                System.out.println("添加套餐失败");
+            }
+        return flag;
     }
 
     private boolean containlistitem(String itemName) {
