@@ -1,8 +1,15 @@
-package com.carrot.train;
+package health.serviceImp;
 
+import health.controller.healCommon;
+import health.entity.HealthCheckItem;
+import health.entity.HealthCheckPackage;
+import health.service.HealthCheckManager;
+import jdbc.JDBCUtils;
 import lombok.Data;
 import lombok.Getter;
 
+
+import java.sql.Connection;
 import java.util.*;
 
 /**
@@ -12,43 +19,24 @@ import java.util.*;
 @Data
 @Getter
 public class HealthCheckManagerImpl implements HealthCheckManager {
+    private healCommon hc=null;
     //所有检查项检查项列表：
     private List<HealthCheckItem> itemList;
     //套餐列表key是套餐名，value是套餐
-    private Map<String,HealthCheckPackage> map;
+    private Map<String, HealthCheckPackage> map;
 
     @Override
-    public void initial() {
+    public void initial() throws Exception {
+        hc=new healCommon();
         itemList=new ArrayList<HealthCheckItem>();
         map=new HashMap<String,HealthCheckPackage>();
-        HealthCheckItem hcit1 = new HealthCheckItem("血常规", "检验血液",20);
-        HealthCheckItem hcit2 = new HealthCheckItem("尿常规", "检验尿液", 20);
-        HealthCheckItem hcit3 = new HealthCheckItem("肛肠科", "检验肛肠", 50);
-        HealthCheckItem hcit4 = new HealthCheckItem("x胸透", "胸部检查", 60);
-        HealthCheckItem hcit5 = new HealthCheckItem("心肺", "检验心肺功能",40 );
-        itemList.add(hcit1);
-        itemList.add(hcit2);
-        itemList.add(hcit3);
-        itemList.add(hcit4);
-        itemList.add(hcit5);
-        HashSet<HealthCheckItem> items1 = new HashSet<HealthCheckItem>();
-        items1.add(hcit1);
-        HealthCheckPackage hcpqu1 = new HealthCheckPackage("单享套餐1", 1.0, items1);
-        items1.clear();
-        items1.add(hcit2);
-        HealthCheckPackage hcpqu2 = new HealthCheckPackage("单享套餐2", 1.0, items1);
-        items1.clear();
-        items1.add(hcit1);
-        items1.add(hcit5);
-        HealthCheckPackage hcpcon1 = new HealthCheckPackage("组合套餐1", 0.8, items1);
-        items1.clear();
-        items1.add(hcit1);
-        items1.add(hcit2);
-        HealthCheckPackage hcpcon2 = new HealthCheckPackage("组合套餐2", 0.8, items1);
-        map.put(hcpqu1.getPackName(),hcpqu1);
-        map.put(hcpqu2.getPackName(),hcpqu2);
-        map.put(hcpcon1.getPackName(),hcpcon1);
-        map.put(hcpcon2.getPackName(), hcpcon2);
+        Connection connection = JDBCUtils.getConnection();
+        itemList = hc.getHealdaoitem().getall(connection);
+        List<HealthCheckPackage> packagelist = hc.getHealdaopackage().getall(connection);
+        for (HealthCheckPackage healthCheckPackage:packagelist) {
+            map.put(healthCheckPackage.getPackName(), healthCheckPackage);
+        }
+        JDBCUtils.closeResource(connection,null);
     }
 
     @Override
@@ -77,9 +65,11 @@ public class HealthCheckManagerImpl implements HealthCheckManager {
     }
 
     @Override
-    public void showPackageDetail(String packName) {
+    public void showPackageDetail(String packName) throws Exception {
+        hc=new healCommon();
         if (map.containsKey(packName)) {
-            map.get(packName).showDetail();
+            hc.inithealCommon(packName);
+            hc.showDetail();
         } else {
             System.out.println("没有该套餐");
         }
@@ -87,28 +77,35 @@ public class HealthCheckManagerImpl implements HealthCheckManager {
     }
 
     @Override
-    public boolean addItem(String packName, String itemName) {
+    public boolean addItem(String packName, String itemName) throws Exception {
+        hc=new healCommon();
         boolean flag=false;
         if (containlistitem(itemName)==false) {
             System.out.println("添加的检查项不在库中");
             return flag;
         }
+        Connection connection = JDBCUtils.getConnection();
         if (map.containsKey(packName)) {
-            int index = getindexitemlist(itemName);
+            int index = hc.getHealdaoitem().getIndex(connection,itemName);
             if (index > 0) {
                 HealthCheckItem item = itemList.get(index);
                 HealthCheckPackage checkPackage = map.get(packName);
-                if (checkPackage.getItems().contains(item)) {
+                if (checkPackage.getItems().contains(String.valueOf(index))) {
                     System.out.println("添加的检查项已经在套餐中,添加失败");
                     return flag;
                 } else {
-                    checkPackage.getItems().add(item);
+                    checkPackage.setItems(checkPackage.getItems()+","+index);
                 }
                 checkPackage.setDiscount(0.8);
                 map.put(checkPackage.getPackName(), checkPackage);
+                hc.setHealthCheckPackage(checkPackage);
+                hc.getHealdaopackage().update(connection,checkPackage);
+                hc.inithealCommon(checkPackage.getPackName());
                 System.out.println("添加检查项成功");
-                map.get(packName).showDetail();
+                hc.showDetail();
+
                 flag = true;
+                JDBCUtils.closeResource(connection,null);
             } else {
                 System.out.println("库中不包含该套餐");
             }
@@ -119,30 +116,36 @@ public class HealthCheckManagerImpl implements HealthCheckManager {
     }
 
     @Override
-    public boolean delItem(String packName, String itemName) {
+    public boolean delItem(String packName, String itemName) throws Exception {
+        hc=new healCommon();
         boolean flag=false;
         if (containlistitem(itemName) == false) {
             System.out.println("删除的检查项不在库中");
             return flag;
         }
+        Connection connection = JDBCUtils.getConnection();
         if (map.containsKey(packName)) {
-            int index = getindexitemlist(itemName);
+            int index = getindexitemlist(itemName)+1;
             if (index > 0) {
                 HealthCheckItem item = itemList.get(index);
                 HealthCheckPackage checkPackage = map.get(packName);
-                if (checkPackage.getItems().contains(item)) {
-//                    System.out.println("添加的检查项已经在套餐中,添加失败");
-                    checkPackage.getItems().remove(item);
+                if (checkPackage.getItems().indexOf(String.valueOf(index))!= -1) {
+                    checkPackage.setItems(checkPackage.getItems().replace(String.valueOf(index),","));
                     checkPackage.setDiscount(1.0);
                     map.put(checkPackage.getPackName(), checkPackage);
+                    hc.setHealthCheckPackage(checkPackage);
+                    hc.getHealdaopackage().update(connection,checkPackage);
+                    hc.inithealCommon(checkPackage.getPackName());
+                    hc.showDetail();
                     System.out.println("删除检查项成功");
-                    map.get(packName).showDetail();
                     flag = true;
+                    JDBCUtils.closeResource(connection,null);
                 } else {
                     System.out.println("套餐中无该检查项，删除检查项失败");
                     return flag;
                 }
             }
+
         } else {
             System.out.println("添加的套餐名不存在,添加失败");
         }
@@ -153,19 +156,25 @@ public class HealthCheckManagerImpl implements HealthCheckManager {
 
 
     @Override
-    public boolean updatePrice(String packName, double discount) {
+    public boolean updatePrice(String packName, double discount) throws Exception {
+        hc=new healCommon();
         boolean flag=false;
         if(discount<0||discount>1){
             System.out.println("请输的折扣数非法");
             return flag;
         }
+        Connection connection = JDBCUtils.getConnection();
         if (map.containsKey(packName)) {
             HealthCheckPackage checkPackage = map.get(packName);
             checkPackage.setDiscount(discount);
             map.put(checkPackage.getPackName(), checkPackage);
+            hc.getHealdaopackage().update(connection,checkPackage);
             System.out.println("修改折扣成功");
-            map.get(packName).showDetail();
+            hc.setHealthCheckPackage(checkPackage);
+            hc.inithealCommon(checkPackage.getPackName());
+            hc.showDetail();
             flag=true;
+            JDBCUtils.closeResource(connection,null);
             return flag;
             } else {
                 System.out.println("库中不包含该套餐,修改折扣失败");
@@ -175,7 +184,8 @@ public class HealthCheckManagerImpl implements HealthCheckManager {
 
 
     @Override
-    public boolean addPackage(String newpackName) {
+    public boolean addPackage(String newpackName) throws Exception {
+        hc=new healCommon();
         boolean flag=true;
         for (String key : map.keySet()) {
             if (key.equals(newpackName)) {
@@ -184,11 +194,14 @@ public class HealthCheckManagerImpl implements HealthCheckManager {
                 break;
             }
         }
+        Connection connection = JDBCUtils.getConnection();
         if (flag) {
             HealthCheckPackage checkPackage = new HealthCheckPackage();
             checkPackage.setPackName(newpackName);
             map.put(newpackName, checkPackage);
+            hc.getHealdaopackage().insert(connection,checkPackage);
             System.out.println("添加套成功");
+            JDBCUtils.closeResource(connection,null);
             return flag;
         } else {
                 System.out.println("添加套餐失败");

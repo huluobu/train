@@ -220,7 +220,28 @@ firstweek02 调用firstweek01的config的读取properties配置
 		  iterator 迭代器
 		  list iterator 方向任意（hasprevious,set替换）
 
+###jdbc
+1. 数据的持久化：
+		本地文件
+		数据库
+		文件
+2. 步骤 建立数据源-- 添加驱动--执行sql语句（）--返回结果集resulset--关闭连接
 
+3. driver+url+user+password+connect
+	drivermanage 操作
+4. prestatement ps= 实际sql执行语句
+	ps.execute();
+	ps.close();
+	connect.close();
+5. 对数据库连接的常用方法可以封装成工具类
+
+6. 获取结果集的元数据
+	resultset  rs =ps.execute();
+	resultsetmetadata rsmd=rs.getMetadata();
+	//或得对象列名
+	Field fied = customer.class.getdeclaredfield()
+	field.setaccessible(true);
+	field.set(cusob,columvalue)
 
 
 
