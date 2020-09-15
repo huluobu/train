@@ -243,7 +243,47 @@ firstweek02 调用firstweek01的config的读取properties配置
 	field.setaccessible(true);
 	field.set(cusob,columvalue)
 
+## web项目
+### tomcat 目录作用
+		bin 专门用来存放 Tomcat 服务器的可执行程序
+		conf 专门用来存放 Tocmat 服务器的配置文件
+		lib 专门用来存放 Tomcat 服务器的 jar 包
+		logs 专门用来存放 Tomcat 服务器运行时输出的日记信息
+		temp 专门用来存放 Tomcdat 运行时产生的临时数据
+		webapps 专门用来存放部署的 Web 工程。
+		work 是 Tomcat 工作时的目录， 用来存放 Tomcat 运行时 jsp 翻译为 Servlet 的源码， 和 Session 钝化的目录
+### 部署铜项目
+		1. 在webapp下创建项目目录访问
+		2. 找到 Tomcat 下的 conf 目录\Catalina\localhost\ 下,创建如下的配置文件：
 
+### Servlet
+#### 含义
+	1、 Servlet 是 JavaEE 规范之一。 规范就是接口
+	2、 Servlet 就 JavaWeb 三大组件之一。 三大组件分别是： Servlet 程序、 Filter 过滤器、 Listener 监听器。
+	3、 Servlet 是运行在服务器上的一个 java 小程序， 它可以接收客户端发送过来的请求， 并响应数据给客户端
+
+#### 生命周期
+
+	1、 执行 Servlet 构造器方法
+	2、 执行 init 初始化方法
+	第一、 二步， 是在第一次访问， 的时候创建 Servlet 程序会调用。
+	3、 执行 service 方法
+	第三步， 每次访问都会调用。
+	4、 执行 destroy 销毁方法
+	第四步， 在 web 工程停止的时候调用。
+
+
+### servletcontext
+	ServletContext 是一个接口， 它表示 Servlet 上下文对象
+	2、 一个 web 工程， 只有一个 ServletContext 对象实例。
+	3、 ServletContext 对象是一个域对象。
+	4、 ServletContext 是在 web 工程部署启动的时候创建。 在 web 工程停止的时候
+			什么是域对象?
+		域对象， 是可以像 Map 一样存取数据的对象， 叫域对象。
+		这里的域指的是存取数据的操作范围， 整个 web 工程。
+					存数据 				取数据 				删除 
+		Map 		put() 				get() 				remove()
+		域对象 		setAttribute() 		getAttribute() 		removeAttribute()
 
 
 

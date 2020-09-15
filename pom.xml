@@ -17,8 +17,8 @@
         <module>firstweek-05</module>
         <module>secondweek-01-sql</module>
         <module>thirdweek-01-collection</module>
-        <module>thirdweeek-02-jdbc</module>
         <module>thirdweek-02-jdbc</module>
+        <module>thirdweek-web-test01</module>
     </modules>
     <properties>
 
