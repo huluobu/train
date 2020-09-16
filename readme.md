@@ -311,5 +311,7 @@ firstweek02 调用firstweek01的config的读取properties配置
 	4. jdk 线程安全的类：string buffer hashtable
 
 ### 死锁的避免
+    1. notifyall与notify()
+    2. 生产者，消费者问题
 
 
