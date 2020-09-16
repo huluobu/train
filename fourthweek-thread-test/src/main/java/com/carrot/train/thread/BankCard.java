@@ -20,7 +20,7 @@ public class BankCard {
     }
 
     public synchronized void take(double m) {
-        if (!false) {
+        if (!flag) {
             try {
                 this.wait();
             } catch (InterruptedException e) {

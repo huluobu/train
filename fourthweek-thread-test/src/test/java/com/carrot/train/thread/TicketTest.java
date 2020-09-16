@@ -11,11 +11,11 @@ public class TicketTest {
         Ticket ticket = new Ticket();
         TicketWin tw1 = new TicketWin(ticket, "窗口1");
         TicketWin tw2 = new TicketWin(ticket, "窗口2");
-        TicketWin tw3 = new TicketWin(ticket, "窗口3");
-        TicketWin tw4 = new TicketWin(ticket, "窗口4");
+//        TicketWin tw3 = new TicketWin(ticket, "窗口3");
+//        TicketWin tw4 = new TicketWin(ticket, "窗口4");
         tw1.start();
         tw2.start();
-        tw3.start();
-        tw4.start();
+//        tw3.start();
+//        tw4.start();
     }
 }
