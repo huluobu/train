@@ -19,6 +19,7 @@
         <module>thirdweek-01-collection</module>
         <module>thirdweek-02-jdbc</module>
         <module>thirdweek-web-test01</module>
+        <module>fourthweek-thread-test</module>
     </modules>
     <properties>
 

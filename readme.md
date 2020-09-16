@@ -286,5 +286,30 @@ firstweek02 调用firstweek01的config的读取properties配置
 		域对象 		setAttribute() 		getAttribute() 		removeAttribute()
 
 
+## 多线程
+### 线程概念
+	1. cpu 调度的基本单位
+	2. 进程中的一条执行路径
+	3. 基本组成部分：时间片
+					堆空间：存储的是对象，多线程共享
+					栈空间：存储的是局部变量，每个线程有独立的部分
+	4. 抢占式执行
+
+### 线程
+	1. 继承thread对象，thread.start();
+	2. 配置runnable,接口，将对象付给thread 执行
+	3. 初始--就绪--运行--结束；
+	4. yield:放弃当前时间片和join：加入当前线程，知道加入的线程执行完毕，才能唤醒阻塞的当前线程
+	5. 设置优先级1-10,从低到高
+	6. 守护线程的使用thread.setdaemon(true)
+	7. 限期等待，无限期等待
+
+### 多线程安全问题
+	1. 同步代码块 synchronized,对临界资源加锁，同一时刻只有一个线程访问资源
+		锁是多个线程可以访问的对象，可以是锁对象，只有获得锁对象才能进入同步代码块
+	3. 同步方法 synchronized+method name ：锁对应的是当前类的对象
+	4. jdk 线程安全的类：string buffer hashtable
+
+### 死锁的避免
 
 
