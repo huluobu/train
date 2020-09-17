@@ -10,7 +10,6 @@ public class Ticket implements Runnable {
                     break;
                 }
                 System.out.println(Thread.currentThread().getName()+"卖了第"+ticket+"票");
-                System.out.println(Thread.currentThread().getState());
 
                 ticket--;
             }

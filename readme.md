@@ -310,8 +310,23 @@ firstweek02 调用firstweek01的config的读取properties配置
 	3. 同步方法 synchronized+method name ：锁对应的是当前类的对象
 	4. jdk 线程安全的类：string buffer hashtable
 
-### 死锁的避免
-    1. notifyall与notify()
-    2. 生产者，消费者问题
+### 线程的通讯
+	1. 只有在obj 锁的代码块中才能使用wait();
 
+### 线程池
+	1. threadpoolservice executor executors
+	2. es.shutdown
+	3. callable 接口，线程要完成的功能，：前者重调度，后者中运行
+		callable有返回值，有异常抛出
+		callable无法直接交给线程对象，需要转成可执行任务featureTask
+	4. feature 获取任务执行的结果
 
+### 线程的同步和异步
+	1. 有等待是同步
+	2. 无等待是异步
+	3. 重入锁 reentrantlock lock对象
+
+### 线程安全的集合
+	1. 运用collection 中的线程安全的方法，collections.synchronizedlist()方法
+		或者使用Copyonwritearrayset or Copyonwritearraylist
+	2. queue 队列接口

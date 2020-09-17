@@ -20,6 +20,7 @@
         <module>thirdweek-02-jdbc</module>
         <module>thirdweek-web-test01</module>
         <module>fourthweek-thread-test</module>
+        <module>fourthweek-thread-homework</module>
     </modules>
     <properties>
 
