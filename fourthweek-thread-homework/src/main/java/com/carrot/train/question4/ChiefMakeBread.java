@@ -15,7 +15,12 @@ public class ChiefMakeBread implements Runnable {
             }else {
                 bread.makeBread();
                 index++;
-                System.out.println(Thread.currentThread().getName() + "制作汉堡是：" + index);
+                System.out.println(Thread.currentThread().getName() + "制作汉堡是：" + (index-1));
+                try {
+                    Thread.sleep(500);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
             }
         }
 

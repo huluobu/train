@@ -21,6 +21,7 @@
         <module>thirdweek-web-test01</module>
         <module>fourthweek-thread-test</module>
         <module>fourthweek-thread-homework</module>
+        <module>fourthweek-web-traintest</module>
     </modules>
     <properties>
 

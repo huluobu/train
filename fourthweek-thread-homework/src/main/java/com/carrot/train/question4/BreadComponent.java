@@ -1,8 +1,10 @@
 package com.carrot.train.question4;
 
+import lombok.NoArgsConstructor;
+
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
-
+@NoArgsConstructor
 public class BreadComponent {
     private String a = "bread";
     private String b = "romaine";

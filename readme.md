@@ -329,4 +329,5 @@ firstweek02 调用firstweek01的config的读取properties配置
 ### 线程安全的集合
 	1. 运用collection 中的线程安全的方法，collections.synchronizedlist()方法
 		或者使用Copyonwritearrayset or Copyonwritearraylist
-	2. queue 队列接口
+	2. queue 队列接口 arrayblockqueue 
+	3. concurrenthashmap 分段锁segment,16段

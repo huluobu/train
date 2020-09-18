@@ -1,7 +1,9 @@
 package com.carrot.train.question4;
 
-import java.util.concurrent.ArrayBlockingQueue;
+import lombok.NoArgsConstructor;
 
+import java.util.concurrent.ArrayBlockingQueue;
+@NoArgsConstructor
 public class Bread  {
     private BreadComponent bc = new BreadComponent();
     private ArrayBlockingQueue<Integer> clips = new ArrayBlockingQueue<Integer>(3);
