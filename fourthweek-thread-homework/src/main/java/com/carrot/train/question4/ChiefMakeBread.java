@@ -2,7 +2,7 @@ package com.carrot.train.question4;
 
 
 public class ChiefMakeBread implements Runnable {
-    private Bread bread=new Bread();
+    private Bread bread;
     private int index = 0;
     public ChiefMakeBread(Bread bread) {
         this.bread=bread;
