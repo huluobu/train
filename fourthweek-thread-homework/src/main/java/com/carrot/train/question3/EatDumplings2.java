@@ -4,7 +4,7 @@ import java.util.LinkedList;
 import java.util.Queue;
 
 public class EatDumplings2 implements Runnable {
-    private  Dumpling2 dumpling;
+    private static Dumpling2 dumpling;
     private Queue<Integer> queue = new LinkedList<Integer>();
 
     public  EatDumplings2(Dumpling2 dumpling) {
