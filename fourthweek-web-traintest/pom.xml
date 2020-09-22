@@ -21,6 +21,7 @@
     <mybatis.version>3.5.4</mybatis.version>
     <mybtais-spring.version>2.0.4</mybtais-spring.version>
     <mysql.connector.version>8.0.21</mysql.connector.version>
+    <lombok.version>1.16.18</lombok.version>
 
 
   </properties>
@@ -71,11 +72,7 @@
     </dependency>
 
     <!-- MySQL -->
-    <dependency>
-      <groupId>mysql</groupId>
-      <artifactId>mysql-connector-java</artifactId>
-      <version>${mysql.connector.version}</version>
-    </dependency>
+
 
 
     <dependency>
@@ -83,6 +80,41 @@
       <artifactId>spring-webmvc</artifactId>
       <version>${spring.version}</version>
     </dependency>
+
+    <dependency>
+      <groupId>org.projectlombok</groupId>
+      <artifactId>lombok</artifactId>
+      <version>${lombok.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-jdbc</artifactId>
+      <version>${spring.version}</version>
+    </dependency>
+      <!-- MySQL -->
+      <dependency>
+          <groupId>mysql</groupId>
+          <artifactId>mysql-connector-java</artifactId>
+          <version>5.1.48</version>
+      </dependency>
+
+      <!--    restful jackson-->
+      <dependency>
+          <groupId>com.fasterxml.jackson.core</groupId>
+          <artifactId>jackson-core</artifactId>
+          <version>2.9.6</version>
+      </dependency>
+      <dependency>
+          <groupId>com.fasterxml.jackson.core</groupId>
+          <artifactId>jackson-annotations</artifactId>
+          <version>2.9.6</version>
+      </dependency>
+      <dependency>
+          <groupId>com.fasterxml.jackson.core</groupId>
+          <artifactId>jackson-databind</artifactId>
+          <version>2.9.6</version>
+      </dependency>
 
   </dependencies>
 

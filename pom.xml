@@ -22,6 +22,10 @@
         <module>fourthweek-thread-test</module>
         <module>fourthweek-thread-homework</module>
         <module>fourthweek-web-traintest</module>
+        <module>fifthweek-IO-test</module>
+        <module>fifthweek-IO-test</module>
+        <module>fifthweek-NIO-test</module>
+        <module>fifthweek-IO-homework</module>
     </modules>
     <properties>
 

@@ -331,3 +331,74 @@ firstweek02 调用firstweek01的config的读取properties配置
 		或者使用Copyonwritearrayset or Copyonwritearraylist
 	2. queue 队列接口 arrayblockqueue 
 	3. concurrenthashmap 分段锁segment,16段
+
+## IO 
+### File 类
+	1. 容器-文件-流
+	2. File 能新建、删除、重命名文件和目录，但 
+		File不能访问文件内容本身。如果需要访问文件内容本身，则需要使用输入/输出流。
+		File对象可以作为参数传递给流的构造器
+	3. File file = new File(dir2, "test.txt"); 	
+		if (!file.exists()) { // 如果还不存在，就创建为文件
+		file.createNewFile();}
+### 流原理
+	1. 按操作数据单位不同分为：字节流(8 bit)，字符流(16 bit)  
+	2. 按数据流的流向不同分为：输入流，输出流
+	3. 按流的角色的不同分为：节点流，处理流
+	4.序中打开的文件 IO 资源不属于内存里的资源，垃圾回收机制无法回收该资源，所以应该显式关闭文件 IO 资源
+	5. FileReader fr = new FileReader(“Test.txt”);
+```java
+FileReader fr = null;
+	try{
+		fr = new FileReader("c:\\test.txt");
+		char[] buf = new char[1024];
+		int len= 0;
+		while((len=fr.read(buf))!=-1){
+			System.out.println(new String(buf ,0,len));}
+	}catch (IOException e){
+		System.out.println("read-Exception :"+e.toString());}
+	finally{
+		if(fr!=null){
+			try{
+				fr.close();
+			}catch (IOException e){
+		System.out.println("close-Exception :"+e.toString());
+			} } }
+
+```
+	6. 写流
+```java
+FileWriter fw = null;
+	try{
+		fw = new FileWriter("Test.txt");
+		fw.write("text");
+	}
+	catch (IOException e){
+		System.out.println(e.toString());
+	}
+	finally{
+		If(fw!=null)
+		try{
+		 fw.close();
+		}
+		catch (IOException e){
+			System.out.println(e.toString());}	}
+
+```
+	7. FileOutputStream(file,true) 不覆盖同名文件，FileOutputStream(file)，覆盖同名文件
+	8. BufferedInputStream 和 BufferedOutputStreamBufferedReader 和 BufferedWriter
+		缓冲流要“套接”在相应的节点流之上，对读写的数据提供了缓冲的功能，提高了读写的效率，同时增加了一些新的方法
+	9. 序列化：用ObjectOutputStream类保存基本类型数据或对象的机制
+		反序列化：用ObjectInputStream类读取基本类型数据或对象的机制
+	10. Reader isr = new InputStreamReader(System.in,”gbk”);
+	11. 转换流：将字节流转换为字符流 ，同时进行编码应用
+### NIO 
+	1. 程序-缓冲区-文件
+	2. 操作对象是字节数据
+	3. buffer和channel,channel 是可以读，也可以写，使用对象是buffer
+	4. 非阻塞式
+
+
+
+
+
