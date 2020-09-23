@@ -85,7 +85,7 @@ public class ClientFile {
 
 
         ClientFile cf = new ClientFile();
-//        cf.UpFile(filepath);
+        cf.UpFile(filepath);
         System.out.println("开始下载");
         cf.DownFile();
     }

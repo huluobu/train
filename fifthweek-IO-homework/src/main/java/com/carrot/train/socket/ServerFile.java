@@ -76,17 +76,20 @@ public class ServerFile {
     public static void main(String arg[]) throws IOException {
 //        new ServerFile().DownFile("D:\\file\\up\\test.txt");
         ServerFile sf=new ServerFile();
-//        sf.UpFile();
-        System.out.println("开始下载");
+        sf.UpFile();
+
         File file = new File("D:\\file\\up\\test.txt");
         System.out.println(file.getName());
         System.out.println("修改文件名test2");
         file.renameTo(new File("D:\\file\\up\\test2.txt"));
         System.out.println("修改文件名成功");
-        OutputStream op=new FileOutputStream("D:\\file\\up\\test2.txt");
-        op.write("change is 2".getBytes());
-        op.flush();
-        op.close();
+        System.out.println("开始添加文件内容");
+        FileWriter fileWritter = new FileWriter(new File("D:\\file\\up\\test2.txt"),true);
+        BufferedWriter bufferWritter = new BufferedWriter(fileWritter);
+        bufferWritter.write("append the line");
+        bufferWritter.close();
+        System.out.println("文件添加结束");
+        System.out.println("开始下载");
         sf.DownFile("D:\\file\\up\\test2.txt");
     }
 }
