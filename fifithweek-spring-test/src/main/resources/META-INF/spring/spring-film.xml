@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="film1" class="com.carrot.train.bean.Film">
+        <property name="filmName" value="伍佰"></property>
+        <property name="filmTypeName" value="动作"></property>
+        <property name="releaseDate" value="2020-0901"></property>
+    </bean>
+
+</beans>

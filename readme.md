@@ -392,12 +392,36 @@ FileWriter fw = null;
 		反序列化：用ObjectInputStream类读取基本类型数据或对象的机制
 	10. Reader isr = new InputStreamReader(System.in,”gbk”);
 	11. 转换流：将字节流转换为字符流 ，同时进行编码应用
+
 ### NIO 
 	1. 程序-缓冲区-文件
 	2. 操作对象是字节数据
 	3. buffer和channel,channel 是可以读，也可以写，使用对象是buffer
 	4. 非阻塞式
 
+## spring框架
+
+### 概述
+	1. IOC容器读取Bean的实例之前，需要先将IOC容器本身实例化
+	2. BeanFactory是面向Spring本身的，不是提供给开发人员使用的
+	3. ApplicationContext：BeanFactory的子接口，提供了更多高级特性。面向Spring的使用者
+		ClassPathXmlApplicationContext：对应类路径下的XML格式的配置文件
+		FileSystemXmlApplicationContext：对应文件系统中的XML格式的配置文件
+		在初始化时就创建单例的bean，也可以通过配置的方式指定创建的Bean是多实例的。
+
+	4. 通过set方法从属性值赋值
+	5. 构造器参数赋值，指定类型赋值，和索引赋值
+	6. 命名空间
+
+### bean
+
+	1. 管理过程
+		① 通过构造器或工厂方法创建bean实例
+		② 为bean的属性设置值和对其他bean的引用
+		③ 调用bean的初始化方法init-method
+		④  bean可以使用了
+		⑤ 当容器关闭时，调用bean的销毁destroy-method 
+	2.
 
 
 

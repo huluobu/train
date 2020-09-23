@@ -26,6 +26,7 @@
         <module>fifthweek-IO-test</module>
         <module>fifthweek-NIO-test</module>
         <module>fifthweek-IO-homework</module>
+        <module>fifithweek-spring-test</module>
     </modules>
     <properties>
 
