@@ -1,6 +1,7 @@
 package com.carrot.train.spring.mapper;
 
-import com.pactera.spring.model.Staff;
+
+import com.carrot.train.spring.enetity.Staff;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;

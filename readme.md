@@ -421,7 +421,13 @@ FileWriter fw = null;
 		③ 调用bean的初始化方法init-method
 		④  bean可以使用了
 		⑤ 当容器关闭时，调用bean的销毁destroy-method 
-	2.
+	2.装配模式 
+
+		根据类型自动装配：将类型匹配的bean作为属性注入到另一个bean中。若IOC容器中有多个与目标bean类型一致的bean，Spring将无法判定哪个bean最合适该属性，所以不能执行自动装配
+		根据名称自动装配：必须将目标bean的名称和属性名设置的完全相同
+		通过构造器自动装配：当bean中存在多个构造器时，此种自动装配方式将会很复杂。不推荐使用。
+	3. 
+
 
 
 

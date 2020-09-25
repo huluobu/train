@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.carrot.train.spring.mapper.UsersMapperr">
+
+    <insert id="insert" parameterType="com.carrot.train.spring.enetity.User">
+        INSERT INTO users(userId, userName, password, enabled, loginTime, createdTime,
+        delflag, modifiedTime)
+        VALUES(#{userId}, #{userName}, #{password}, #{enabled}, #{loginTime},
+        #{createdTime}, #{delflag}, #{modifiedTime});
+    </insert>
+
+    <update id="update" parameterType="com.carrot.train.spring.enetity.User">
+        UPDATE users
+        <set>
+            <if test="null != userName">userName=#{userName},</if>
+            <if test="null != password">password=#{password},</if>
+            <if test="null != enabled">enabled=#{enabled},</if>
+            <if test="null != loginTime">loginTime=#{loginTime},</if>
+            <if test="null != delflag">delflag=#{delflag}</if>
+        </set>
+        <where>
+            userId=#{userId}
+        </where>
+    </update>
+
+    <select id="findByPrimaryKey" parameterType="String" resultType="com.carrot.train.spring.enetity.User">
+        SELECT * FROM users WHERE userId=#{primaryKey}
+    </select>
+
+</mapper>
