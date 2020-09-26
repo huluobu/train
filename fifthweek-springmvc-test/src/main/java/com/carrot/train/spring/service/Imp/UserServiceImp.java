@@ -9,18 +9,5 @@ public class UserServiceImp implements UserService {
     @Autowired
     private UsersMapper usersMapper;
 
-    @Override
-    public void registUser(User user) {
 
-    }
-
-    @Override
-    public User login(User user) {
-        return null;
-    }
-
-    @Override
-    public boolean existsUsername(String username) {
-        return false;
-    }
 }
